@@ -1,0 +1,92 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  color-scheme: light;
+  font-family: "Aptos", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  background: #f8fafc;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(14, 165, 233, 0.12), transparent 24%),
+    radial-gradient(circle at 88% 18%, rgba(59, 130, 246, 0.09), transparent 18%),
+    linear-gradient(180deg, #f8fbff 0%, #f3f6fb 44%, #edf2f7 100%);
+  color: #0f172a;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.12) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(circle at center, black, transparent 82%);
+  opacity: 0.38;
+}
+#root {
+  min-height: 100vh;
+  position: relative;
+}
+@layer components {
+  .glass-panel {
+    @apply rounded-[28px] border border-slate-200 bg-white/90 shadow-board backdrop-blur-sm;
+  }
+  .eyebrow {
+    @apply text-[0.68rem] uppercase tracking-[0.34em] text-black;
+  }
+}
+.board-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.55) rgba(255, 255, 255, 0.6);
+}
+.board-scroll::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+.board-scroll::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.55);
+  border-radius: 999px;
+}
+.board-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+}
+.status-live {
+  animation: status-pulse 1.7s ease-in-out infinite;
+}
+.tile-hot {
+  animation: tile-pop 0.52s ease;
+}
+@keyframes status-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.25);
+    opacity: 0.8;
+  }
+}
+@keyframes tile-pop {
+  0% {
+    transform: scale(0.82);
+    box-shadow: 0 0 0 rgba(59, 130, 246, 0);
+  }
+  45% {
+    transform: scale(1.12);
+    box-shadow: 0 0 18px rgba(59, 130, 246, 0.18);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
